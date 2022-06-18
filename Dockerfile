@@ -11,8 +11,8 @@ COPY /common/ .
 
 
 FROM node:alpine AS server
-WORKDIR /app/server/
-COPY --from=client /app/client/build/ /client/build
+# WORKDIR /app/server/
+# COPY --from=client /app/client/build/ /client/build
 WORKDIR /app/server/
 COPY /server/package.json .
 RUN npm i
