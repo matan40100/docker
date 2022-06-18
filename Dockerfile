@@ -1,21 +1,21 @@
 FROM node:alpine AS client
 WORKDIR /app/client/
-COPY package.json .
+COPY /client/package.json .
 RUN npm i
-COPY . .
+COPY /client/ .
 RUN npm run build
 
 FROM node:alpine AS common
 WORKDIR /app/common/
-COPY . .
+COPY /common/ .
 
 
 FROM node:alpine AS server
 WORKDIR /app/server/
-COPY --from=client /app/client/build/ ./client/build
+COPY --from=client /app/client/build/ /client/build
 WORKDIR /app/server/
-COPY package.json .
+COPY /server/package.json .
 RUN npm i
-COPY server.js .
+COPY /server/ .
 EXPOSE 3000
-CMD ['node','server']
+CMD ["node","server"]
