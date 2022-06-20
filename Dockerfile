@@ -5,9 +5,6 @@ RUN npm i
 COPY /client/ .
 RUN npm run build
 
-# FROM node:alpine AS common
-# WORKDIR /app/common/
-# COPY /common/ .
 
 
 FROM node:alpine AS server
